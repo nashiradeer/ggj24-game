@@ -1,0 +1,12 @@
+[package]
+name = "ggj24-game"
+version = "0.0.1"
+edition = "2021"
+description = "A game created for the Global Game Jam 2024, theme: 'Make Me Laugh'."
+readme = "README.md"
+repository = "https://github.com/nashiradeer/ggj24-game"
+license = "GPL-3.0-or-later"
+keywords = ["ggj24", "game", "jam"]
+categories = ["games"]
+
+[dependencies]
