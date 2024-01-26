@@ -9,4 +9,14 @@ license = "GPL-3.0-or-later"
 keywords = ["ggj24", "game", "jam"]
 categories = ["games"]
 
-[dependencies]
+[dependencies.cursive]
+package = "cursive"
+version = "0.20.0"
+features = ["pancurses-backend"]
+default-features = false
+
+[dependencies.kira]
+package = "kira"
+version = "0.8.6"
+features = ["cpal", "ogg"]
+default-features = false
