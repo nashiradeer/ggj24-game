@@ -20,3 +20,6 @@ package = "kira"
 version = "0.8.6"
 features = ["cpal", "ogg"]
 default-features = false
+
+[target.'cfg(windows)'.dependencies]
+msgbox = "0.7.0"
