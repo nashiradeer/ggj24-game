@@ -9,6 +9,9 @@ license = "GPL-3.0-or-later"
 keywords = ["ggj24", "game", "jam"]
 categories = ["games"]
 
+[dependencies]
+sysinfo = "0.30.5"
+
 [dependencies.cursive]
 package = "cursive"
 version = "0.20.0"
