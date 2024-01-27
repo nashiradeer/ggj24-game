@@ -9,7 +9,6 @@ mod scenes;
 
 fn main() {
     init();
-
     game();
 }
 
