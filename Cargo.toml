@@ -12,7 +12,7 @@ categories = ["games"]
 [dependencies.cursive]
 package = "cursive"
 version = "0.20.0"
-features = ["pancurses-backend"]
+features = ["crossterm-backend"]
 default-features = false
 
 [dependencies.kira]
@@ -22,4 +22,6 @@ features = ["cpal", "ogg"]
 default-features = false
 
 [target.'cfg(windows)'.dependencies]
-msgbox = "0.7.0"
+win-msgbox = "0.1.2"
+win32console = "0.1.5"
+windows = "0.52.0"
