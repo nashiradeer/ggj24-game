@@ -10,7 +10,6 @@ pub mod layer1;
 pub mod layer2;
 
 pub fn intro(s: &mut Cursive) {
-    s.pop_layer();
     s.add_layer(
         Dialog::around(
             SelectView::new()
@@ -22,10 +21,11 @@ pub fn intro(s: &mut Cursive) {
                         game_data.play_click();
                     }
 
+                    s.pop_layer();
                     match d {
-                        0 => layer0::check_integrity(s),
-                        1 => layer0::check_requirements(s),
-                        2 => layer0::quit(s),
+                        0 => layer0::scene0(s),
+                        1 => layer0::scene1(s),
+                        2 => layer0::scene2(s),
                         _ => unreachable!(),
                     }
                 })
@@ -45,7 +45,6 @@ pub fn credits(s: &mut Cursive) {
         game_data.play(5);
     }
 
-    s.pop_layer();
     s.add_layer(
         Dialog::text("Um jogo por Nashira Deer, Kenai Deer e Yuri Silva.")
             .title("Créditos")

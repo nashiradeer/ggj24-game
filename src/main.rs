@@ -111,6 +111,7 @@ fn game() {
                     game_data.play_click();
                 }
 
+                s.pop_layer();
                 intro(s);
             }),
     );
