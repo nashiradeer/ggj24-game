@@ -40,7 +40,13 @@ pub fn quit(s: &mut Cursive) {
                 s.pop_layer();
                 s.add_layer(
                     Dialog::text("Muita coragem para quem se chama *Insira seu nome aqui*...")
-                        .button("Como você sabe?...", |_| todo!()),
+                        .button("Como você sabe?...", |s| {
+                            if let Some(game_data) = s.user_data::<GameData>() {
+                                game_data.play_click();
+                            }
+
+                            layer2::i_know(s);
+                        }),
                 );
             }),
     );
@@ -60,8 +66,8 @@ pub fn ingredients(s: &mut Cursive) {
         }
 
         match d {
-            0 => todo!(),
-            1 => todo!(),
+            0 => layer2::armored(s),
+            1 => layer2::repairing_game_files(s),
             _ => unreachable!(),
         }
     });
@@ -83,8 +89,20 @@ pub fn not_enough(s: &mut Cursive) {
                 s.add_layer(
                     Dialog::text("Não me surpreende não rodar...")
                         .title("Que triste...")
-                        .button("Qual o problema?...", |s| todo!())
-                        .button("...", |s| todo!()),
+                        .button("Qual o problema?...", |s| {
+                            if let Some(game_data) = s.user_data::<GameData>() {
+                                game_data.play_click();
+                            }
+
+                            layer2::whats_problem(s);
+                        })
+                        .button("...", |s| {
+                            if let Some(game_data) = s.user_data::<GameData>() {
+                                game_data.play_click();
+                            }
+
+                            layer2::what_happen(s);
+                        }),
                 );
             })
             .button("Não", |s| {
@@ -92,25 +110,31 @@ pub fn not_enough(s: &mut Cursive) {
                     game_data.play_click();
                 }
 
-                let mut select = SelectView::new();
-
-                select.add_item("O que eu faço?", 0);
-                select.add_item("Faz funcionar", 1);
-
-                select.set_on_submit(|s, d| {
-                    if let Some(game_data) = s.user_data::<GameData>() {
-                        game_data.play_click();
-                    }
-
-                    match d {
-                        0 => todo!(),
-                        1 => todo!(),
-                        _ => unreachable!(),
-                    }
-                });
-
                 s.pop_layer();
-                s.add_layer(Dialog::around(select).title("..."))
+                s.add_layer(
+                    Dialog::around(
+                        SelectView::new()
+                            .item("O que eu faço?", 0)
+                            .item("Faz funcionar", 1)
+                            .on_submit(|s, d| {
+                                if let Some(game_data) = s.user_data::<GameData>() {
+                                    game_data.play_click();
+                                }
+
+                                match d {
+                                    0 => layer2::what_i_do(s),
+                                    1 => layer2::only_do(s),
+                                    _ => unreachable!(),
+                                }
+                            })
+                            .on_select(|s, _| {
+                                if let Some(game_data) = s.user_data::<GameData>() {
+                                    game_data.play_click();
+                                }
+                            }),
+                    )
+                    .title("..."),
+                )
             }),
     );
 }
