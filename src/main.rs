@@ -61,6 +61,11 @@ impl GameData {
     }
 
     pub fn play_loop(&mut self, index: usize) {
+        let is_playing_loop = self.music_loop.is_some();
+        if is_playing_loop {
+            self.stop_loop();
+        }
+
         let music = StreamingSoundData::from_cursor(
             Cursor::new(self.audios[index]),
             StreamingSoundSettings::default().loop_region(Region::default()),
