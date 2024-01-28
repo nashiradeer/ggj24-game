@@ -45,7 +45,7 @@ pub fn scene0(s: &mut Cursive) {
 
                             let cb_sink = s.cb_sink().to_owned();
                             thread::spawn(move || {
-                                thread::sleep(Duration::from_secs(10));
+                                thread::sleep(Duration::from_secs(7));
 
                                 cb_sink
                                     .send(Box::new(|s| {
