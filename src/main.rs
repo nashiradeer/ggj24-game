@@ -21,10 +21,13 @@ static FIER_ME: &[u8] = include_bytes!("../assets/FierMe.ogg");
 static CHILL: &[u8] = include_bytes!("../assets/chill.ogg");
 static PATIENCE: &[u8] = include_bytes!("../assets/patience.ogg");
 static CREDITS: &[u8] = include_bytes!("../assets/credits.ogg");
+static OHNO: &[u8] = include_bytes!("../assets/OhNo.ogg");
+static FEELINGS: &[u8] = include_bytes!("../assets/feelings.ogg");
+static MYSTERIOUS: &[u8] = include_bytes!("../assets/mysterius.ogg");
 
 pub struct GameData {
     pub audio_manager: AudioManager<DefaultBackend>,
-    pub audios: [&'static [u8]; 6],
+    pub audios: [&'static [u8]; 9],
     pub music_loop: Option<StreamingSoundHandle<FromFileError>>,
 }
 
@@ -33,7 +36,9 @@ impl GameData {
         Self {
             audio_manager: AudioManager::<DefaultBackend>::new(AudioManagerSettings::default())
                 .expect("Failed to create audio manager"),
-            audios: [JOY, SELECT, FIER_ME, CHILL, PATIENCE, CREDITS],
+            audios: [
+                JOY, SELECT, FIER_ME, CHILL, PATIENCE, CREDITS, OHNO, FEELINGS, MYSTERIOUS,
+            ],
             music_loop: None,
         }
     }
