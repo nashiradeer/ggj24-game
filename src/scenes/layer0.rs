@@ -45,7 +45,7 @@ pub fn scene0(s: &mut Cursive) {
 
                             let cb_sink = s.cb_sink().to_owned();
                             thread::spawn(move || {
-                                thread::sleep(Duration::from_secs(7));
+                                thread::sleep(Duration::from_secs(9));
 
                                 cb_sink
                                     .send(Box::new(|s| {
@@ -77,6 +77,10 @@ pub fn scene0(s: &mut Cursive) {
 }
 
 pub fn scene1(s: &mut Cursive) {
+    if let Some(game_data) = s.user_data::<GameData>() {
+        game_data.play_loop(8);
+    }
+
     let system = System::new_with_specifics(
         RefreshKind::new()
             .with_cpu(CpuRefreshKind::new().with_frequency())
@@ -140,7 +144,7 @@ pub fn scene2(s: &mut Cursive) {
                             thread::sleep(Duration::from_secs(1));
                             cb_sink
                                 .send(Box::new(|s| {
-                                    credits(s);
+                                    credits(s, true);
                                 }))
                                 .unwrap();
                         });
