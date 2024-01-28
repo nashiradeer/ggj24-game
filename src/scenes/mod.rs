@@ -11,33 +11,32 @@ pub mod layer2;
 
 pub fn intro(s: &mut Cursive) {
     s.pop_layer();
+    s.add_layer(
+        Dialog::around(
+            SelectView::new()
+                .item("Checar integridade", 0)
+                .item("Checar requisitos mínimos", 1)
+                .item("Sair", 2)
+                .on_submit(|s, d| {
+                    if let Some(game_data) = s.user_data::<GameData>() {
+                        game_data.play_click();
+                    }
 
-    let mut select = SelectView::new();
-
-    select.add_item("Checar integridade", 0);
-    select.add_item("Checar requisitos mínimos", 1);
-    select.add_item("Sair", 2);
-
-    select.set_on_submit(|s, d| {
-        if let Some(game_data) = s.user_data::<GameData>() {
-            game_data.play_click();
-        }
-
-        match d {
-            0 => layer0::check_integrity(s),
-            1 => {
-                s.pop_layer();
-                s.add_layer(layer0::check_requirements())
-            }
-            2 => {
-                s.pop_layer();
-                s.add_layer(layer0::quit())
-            }
-            _ => unreachable!(),
-        }
-    });
-
-    s.add_layer(Dialog::around(select).title("Como posso ajudar?"));
+                    match d {
+                        0 => layer0::check_integrity(s),
+                        1 => layer0::check_requirements(s),
+                        2 => layer0::quit(s),
+                        _ => unreachable!(),
+                    }
+                })
+                .on_select(|s, _| {
+                    if let Some(game_data) = s.user_data::<GameData>() {
+                        game_data.play_click();
+                    }
+                }),
+        )
+        .title("Como posso ajudar?"),
+    );
 }
 
 pub fn credits(s: &mut Cursive) {
