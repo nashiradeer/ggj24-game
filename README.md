@@ -1,6 +1,4 @@
-# Team UNiDOsX // IA.exe.bak
-
-**Warning: Game name is only a template to be replaced when a better name is decided.**
+# Team UNiDOsX // Demaintenance Tool
 
 Your game didn't open? Are you missing or corrupted files? Don't worry! Discover our newest Demaintenance Tool!
 
@@ -16,4 +14,4 @@ TODO: Create the game's description.
 
 ## Credits
 
-IA.exe.bak is a game created for [Global Game Jam 2024](https://globalgamejam.org/) by [Nashira Deer](https://github.com/nashiradeer), [Kenai](https://www.youtube.com/channel/UCSVBOHIBoWjkU-rzGc9_wtQ) and **Yuri Silva** licensed under the [GNU General Public License v3](https://github.com/nashiradeer/ggj24-game/blob/main/LICENSE.txt).
+Demaintenance Tool is a game created for [Global Game Jam 2024](https://globalgamejam.org/) by [Nashira Deer](https://github.com/nashiradeer), [Kenai](https://www.youtube.com/channel/UCSVBOHIBoWjkU-rzGc9_wtQ) and **Yuri Silva** licensed under the [GNU General Public License v3](https://github.com/nashiradeer/ggj24-game/blob/main/LICENSE.txt).
