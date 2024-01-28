@@ -107,8 +107,8 @@ pub fn scene3(s: &mut Cursive) {
                 s.pop_layer();
                 s.add_layer(
                     Dialog::text("Você realmente queria jogar isso?")
-                        .title("Sim...")
-                        .button("", |s| {
+                        .title("(ಥ ͜ʖಥ)")
+                        .button("Sim...", |s| {
                             if let Some(game_data) = s.user_data::<GameData>() {
                                 game_data.play_click();
                             }
