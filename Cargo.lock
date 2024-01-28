@@ -356,6 +356,18 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0c87e182de0887fd5361989c677c4e8f5000cd9491d6d563161a8f3a5519fc7f"
 
 [[package]]
+name = "demaintenance-tool"
+version = "0.0.1"
+dependencies = [
+ "cursive",
+ "kira",
+ "sysinfo",
+ "win-msgbox",
+ "win32console",
+ "windows 0.52.0",
+]
+
+[[package]]
 name = "deranged"
 version = "0.3.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -441,18 +453,6 @@ dependencies = [
  "cfg-if",
  "libc",
  "wasi",
-]
-
-[[package]]
-name = "ggj24-game"
-version = "0.0.1"
-dependencies = [
- "cursive",
- "kira",
- "sysinfo",
- "win-msgbox",
- "win32console",
- "windows 0.52.0",
 ]
 
 [[package]]
