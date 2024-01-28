@@ -245,7 +245,7 @@ pub fn scene7(s: &mut Cursive) {
                                         }
 
                                         s.pop_layer();
-                                        s.add_layer(Dialog::text("...").title("(ಠ ∩ಠ)").button(
+                                        s.add_layer(Dialog::text("...").title("(╬ಠ益ಠ)").button(
                                             "...",
                                             |s| {
                                                 if let Some(game_data) = s.user_data::<GameData>() {
@@ -276,7 +276,7 @@ pub fn scene7(s: &mut Cursive) {
                                                                 }
                                                             }),
                                                     )
-                                                    .title("(ಠ ∩ಠ)"),
+                                                    .title("(╬ಠ益ಠ)"),
                                                 )
                                             },
                                         ))
