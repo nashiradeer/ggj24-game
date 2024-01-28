@@ -10,8 +10,9 @@ use super::{
     layer1::{self, not_enough},
 };
 
-pub fn quit() -> Dialog {
-    Dialog::text("Oh...").button("Próximo", |s| {
+pub fn quit(s: &mut Cursive) {
+    s.pop_layer();
+    s.add_layer(Dialog::text("Oh...").button("Próximo", |s| {
         if let Some(game_data) = s.user_data::<GameData>() {
             game_data.play_click();
         }
@@ -53,7 +54,7 @@ pub fn quit() -> Dialog {
                     }),
             )
         }));
-    })
+    }));
 }
 
 pub fn check_integrity(s: &mut Cursive) {
@@ -125,34 +126,37 @@ pub fn check_integrity(s: &mut Cursive) {
     });
 }
 
-pub fn check_requirements() -> Dialog {
+pub fn check_requirements(s: &mut Cursive) {
     let system = System::new_with_specifics(
         RefreshKind::new()
             .with_cpu(CpuRefreshKind::new().with_frequency())
             .with_memory(MemoryRefreshKind::new().with_ram()),
     );
 
-    Dialog::text(format!(
-        "Apenas {} GB de RAM...",
-        system.total_memory() / 1024 / 1024 / 1024
-    ))
-    .title("Requisitos mínimos")
-    .button("Próximo", move |s| {
-        if let Some(game_data) = s.user_data::<GameData>() {
-            game_data.play_click();
-        }
+    s.pop_layer();
+    s.add_layer(
+        Dialog::text(format!(
+            "Apenas {} GB de RAM...",
+            system.total_memory() / 1024 / 1024 / 1024
+        ))
+        .title("Requisitos mínimos")
+        .button("Próximo", move |s| {
+            if let Some(game_data) = s.user_data::<GameData>() {
+                game_data.play_click();
+            }
 
-        s.pop_layer();
-        s.add_layer({
-            Dialog::text(format!("... e só... {} núcleos?", system.cpus().len()))
-                .title("Requisitos mínimos")
-                .button("E?...", |s| {
-                    if let Some(game_data) = s.user_data::<GameData>() {
-                        game_data.play_click();
-                    }
+            s.pop_layer();
+            s.add_layer({
+                Dialog::text(format!("... e só... {} núcleos?", system.cpus().len()))
+                    .title("Requisitos mínimos")
+                    .button("E?...", |s| {
+                        if let Some(game_data) = s.user_data::<GameData>() {
+                            game_data.play_click();
+                        }
 
-                    not_enough(s);
-                })
-        });
-    })
+                        not_enough(s);
+                    })
+            });
+        }),
+    );
 }
