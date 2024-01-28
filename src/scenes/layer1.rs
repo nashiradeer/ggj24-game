@@ -24,6 +24,11 @@ pub fn scene0(s: &mut Cursive) {
                         1 => layer2::scene1(s),
                         _ => unreachable!(),
                     }
+                })
+                .on_select(|s, _| {
+                    if let Some(game_data) = s.user_data::<GameData>() {
+                        game_data.play_click();
+                    }
                 }),
         )
         .title("O que estamos fazendo mesmo?"),
