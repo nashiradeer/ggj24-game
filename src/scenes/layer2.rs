@@ -5,12 +5,14 @@ use cursive::{
 
 use crate::GameData;
 
-use super::credits;
+use super::{credits, demo, layer3};
 
 pub fn scene0(s: &mut Cursive) {
     s.add_layer(Dialog::text("Ah...").title("...").button("...", |s| {
         if let Some(game_data) = s.user_data::<GameData>() {
             game_data.play_click();
+            game_data.stop_loop();
+            game_data.play(6);
         }
 
         s.pop_layer();
@@ -20,6 +22,7 @@ pub fn scene0(s: &mut Cursive) {
                 .button("E agora?", |s| {
                     if let Some(game_data) = s.user_data::<GameData>() {
                         game_data.play_click();
+                        game_data.play_loop(3);
                     }
 
                     s.pop_layer();
@@ -28,13 +31,17 @@ pub fn scene0(s: &mut Cursive) {
                             SelectView::new()
                                 .item("Desblinde eles!", 0)
                                 .item("Repare eles mesmo assim!", 1)
-                                .on_submit(|s, _| {
+                                .on_submit(|s, item| {
                                     if let Some(game_data) = s.user_data::<GameData>() {
                                         game_data.play_click();
                                     }
 
                                     s.pop_layer();
-                                    todo!()
+                                    match item {
+                                        0 => layer3::scene0(s),
+                                        1 => layer3::scene1(s),
+                                        _ => unreachable!(),
+                                    }
                                 })
                                 .on_select(|s, _| {
                                     if let Some(game_data) = s.user_data::<GameData>() {
@@ -56,10 +63,11 @@ pub fn scene1(s: &mut Cursive) {
             .button("NÃO!!!", |s| {
                 if let Some(game_data) = s.user_data::<GameData>() {
                     game_data.play_click();
+                    game_data.play_loop(2);
                 }
 
                 s.pop_layer();
-                todo!()
+                layer3::scene2(s);
             })
             .button("Sim", |s| {
                 if let Some(game_data) = s.user_data::<GameData>() {
@@ -67,7 +75,7 @@ pub fn scene1(s: &mut Cursive) {
                 }
 
                 s.pop_layer();
-                todo!()
+                demo(s);
             }),
     );
 }
@@ -82,7 +90,7 @@ pub fn scene2(s: &mut Cursive) {
                 }
 
                 s.pop_layer();
-                todo!();
+                demo(s);
             })
             .button("Eu sei", |s| {
                 if let Some(game_data) = s.user_data::<GameData>() {
@@ -90,7 +98,7 @@ pub fn scene2(s: &mut Cursive) {
                 }
 
                 s.pop_layer();
-                todo!();
+                demo(s);
             }),
     );
 }
@@ -114,7 +122,7 @@ pub fn scene3(s: &mut Cursive) {
                             }
 
                             s.pop_layer();
-                            todo!();
+                            demo(s);
                         })
                         .button("Não!", |s| {
                             if let Some(game_data) = s.user_data::<GameData>() {
@@ -122,7 +130,7 @@ pub fn scene3(s: &mut Cursive) {
                             }
 
                             s.pop_layer();
-                            todo!();
+                            demo(s);
                         }),
                 );
             }),
@@ -151,8 +159,8 @@ pub fn scene4(s: &mut Cursive) {
 
                                 s.pop_layer();
                                 match item {
-                                    0 => todo!(),
-                                    1 => credits(s),
+                                    0 => demo(s),
+                                    1 => credits(s, true),
                                     _ => unreachable!(),
                                 }
                             })
@@ -169,13 +177,17 @@ pub fn scene4(s: &mut Cursive) {
 }
 
 pub fn scene5(s: &mut Cursive) {
+    if let Some(game_data) = s.user_data::<GameData>() {
+        game_data.stop_loop();
+    }
+
     s.add_layer(Dialog::text("Não").title("ಠ_ಠ").button("Tá", |s| {
         if let Some(game_data) = s.user_data::<GameData>() {
             game_data.play_click();
         }
 
         s.pop_layer();
-        credits(s);
+        credits(s, true);
     }));
 }
 
@@ -200,8 +212,8 @@ pub fn scene6(s: &mut Cursive) {
 
                             s.pop_layer();
                             match d {
-                                0 => todo!(),
-                                1 => credits(s),
+                                0 => demo(s),
+                                1 => credits(s, true),
                                 _ => unreachable!(),
                             }
                         })
@@ -266,7 +278,7 @@ pub fn scene7(s: &mut Cursive) {
                                                                 }
 
                                                                 s.pop_layer();
-                                                                todo!()
+                                                                demo(s);
                                                             })
                                                             .on_select(|s, _| {
                                                                 if let Some(game_data) =
