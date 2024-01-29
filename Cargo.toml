@@ -1,6 +1,6 @@
 [package]
 name = "demaintenance-tool"
-version = "0.0.1"
+version = "0.0.2"
 edition = "2021"
 description = "A game created for the Global Game Jam 2024, theme: 'Make Me Laugh'."
 readme = "README.md"
