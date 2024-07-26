@@ -1,5 +1,7 @@
 # Team UNiDOsX // Demaintenance Tool
 
+**Warning: This project has been deprecated and it's not receiving updates anymore.**
+
 Your game didn't open? Are you missing or corrupted files? Don't worry! Discover our newest Demaintenance Tool!
 
 [![GitHub](https://img.shields.io/github/v/release/nashiradeer/ggj24-game%20?style=for-the-badge&logo=github&logoColor=%23fff&label=GitHub&labelColor=%23181717&color=%23181717)](https://github.com/nashiradeer/ggj24-game/releases)
